@@ -87,7 +87,11 @@ async function main() {
     res.send(item);
   });
 
-  app.listen(3000);
+  // A porta 3000 não funciona no Heroku. Precisa trocar.
+  // Temos que deixar a porta em automático
+  app.listen(process.env.PORT || 3000, () => {
+    console.log("Aplicação rodando na porta: `${process.env.port}`");
+  });
 }
 
 // Executamos a função main()
